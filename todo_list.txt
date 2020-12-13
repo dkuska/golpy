@@ -1,0 +1,9 @@
+IN THIS FILE I'LL ADD THE FEATURES I WANT TO ADD TO THE PROJECT:
+
+
+- UI Buttons to start & stop
+- UI Element to change animation speed
+- UI Element to input rule-format and specific rule
+- Add support for different kinds of rules, not just B2/S23
+
+
