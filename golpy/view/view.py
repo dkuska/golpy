@@ -1,10 +1,7 @@
 import pygame
 from pygame.locals import *
 import numpy as np
-from skimage.transform import resize
 from PIL import Image
-
-
 
 from golpy.eventmanager.eventmanager import *
 import golpy.model.statemachine as statemachine
@@ -17,13 +14,14 @@ class View():
         self.game_model = game_model
 
         self.screen = None
+        self.screen_size = (0,0)
         self.clock = None
         self.size = size
         self.is_initialized = False
-        self.initialize()   #TODO - Does this have to be a seperate call? How
+        self.initialize()   #TODO - Does this have to be a seperate call?
 
     def initialize(self):
-        result = pygame.init()
+        numpass, numfail = pygame.init()
         self.screen_size = (self.size,self.size)
         self.screen = pygame.display.set_mode(self.screen_size)
         self.clock = pygame.time.Clock()
@@ -39,7 +37,7 @@ class View():
         elif isinstance(event, TickEvent):
             if not self.is_initialized:
                 return
-            self.game_model.field.update()      #Update Model at each tick
+            self.game_model.field.update()      #Update playing field at each tick
             current_state = self.game_model.state.peek()
             if current_state == statemachine.STATE_MENU:
                 self.render_menu()

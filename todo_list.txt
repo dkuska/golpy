@@ -1,9 +1,28 @@
 IN THIS FILE I'LL ADD THE FEATURES I WANT TO ADD TO THE PROJECT:
 
+Features:
+    - Add support for different kinds of rules, not just Conway's Game of Life
+    - Add CMD - Commands
 
-- UI Buttons to start & stop
-- UI Element to change animation speed
-- UI Element to input rule-format and specific rule
-- Add support for different kinds of rules, not just B2/S23
+Controller:
+
+Eventmanager:
+
+View:
+    - UI Buttons to start & stop
+    - UI Element to change animation speed
+    - UI Element to input rule-format and specific rule
+
+Field, Model:
+    - Should neighborhood be coded into rule or field?
+    - Update through model rather than field
+    - spawn different pattern onto Field through some generalized function
+    - Should Model-Updating be an Event for the eventqueue?
+
+QA:
+    - Add pydoc comments to everything
+    - enable error logging
+    - add unit tests for each class
+    - Closing game without errors/crashing possible?
 
 
