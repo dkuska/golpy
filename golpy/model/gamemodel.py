@@ -1,13 +1,15 @@
 from golpy.model.field import Field
 from golpy.model.rules.baserule import BaseRule
 from golpy.model.rules.lifeRules import LifeRule
+from golpy.model.rules.generationsRule import GenerationsRule
 from golpy.model.statemachine import *
 from golpy.eventmanager.eventmanager import *
 
 import re  # Used to determine type of rule
 
-class GameModel():
-    def __init__(self, event_manager, rule_str="3/23"):
+
+class GameModel:
+    def __init__(self, event_manager, rule_str="3/23", field_size=(100,100)):
         # MVC Logic
         self.event_manager = event_manager
         event_manager.register_listener(self)
@@ -16,32 +18,39 @@ class GameModel():
 
         # Cellular Automata Logic
         # Playing Field
-        self.field = self.create_field();
+        self.field = Field(size=field_size)
         # Rule
         self.rule = BaseRule()
         self.update_rule(rule_str)
 
     def reset_rule(self):
+        """ Self explanatory"""
         self.rule = BaseRule()
 
     def update_rule(self, rule_str):
-        # TODO - add regex to determine type of rule
-        lifeRegex = re.match("[0-9]+\/[0-9]+", rule_str)
-        if lifeRegex:
+        """ Checks the rule_str with regex to determine type of rule inputted and creates new rule object"""
+        life_regex = re.match("[0-9]+\/[0-9]+", rule_str)
+        life_alt_regex = re.match("B[0-9]+\/S[0-9]+", rule_str)
+
+        # TODO - Fix regex for generations to make sure it gets detected correctly
+        generations_regex = re.match("[0-9]*\/[0-9]*\/[0-9]*", rule_str)
+        generations_alt_regex = re.match("B[0-9]*\/S[0-9]*\/C[0-9]*", rule_str)
+
+        if life_regex or life_alt_regex:
             self.rule = LifeRule(rule_str)
         else:
-            self.rule = LifeRule(rule_str)
-
-    def create_field(self, size=None, mode='default', neighborhood='M', bounded=True):
-        field = Field(size=size, mode=mode, neighborhood=neighborhood, bounded=bounded)
-        return field
+            if generations_regex or generations_alt_regex:
+                self.rule = GenerationsRule(rule_str)
+            else:
+                self.rule = BaseRule(rule_str)
 
     def update_field(self):
-        self.field.update(self.rule)
+        """ Gives notice to field to update itself according to the specified rule"""
+        self.field.update_field(self.rule)
 
+    ### INTERACTION WITH EVENTMANAGER, MAIN LOOP
     def notify(self, event):
         """ Called by an event in the message queue """
-        # TODO - Check which Events the Model should react to
         if isinstance(event, QuitEvent):
             # Clean up data
             self.running = False

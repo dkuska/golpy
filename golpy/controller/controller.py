@@ -27,8 +27,11 @@ class Controller():
                             self.keydownplay(event)
                         if currentstate == STATE_PAUSE:
                             self.keydownpause(event)
-                if event.type == pygame.MOUSEBUTTONDOWN:# handle mouse click events
+                if event.type == pygame.MOUSEBUTTONDOWN:
                     #TODO - Add behaviour for mouse-clicks
+                    #DEBUG
+                    x,y = event.pos
+                    print("Mouse Position: %d,%d " % (x,y))
                     pass
 
 

@@ -1,28 +1,34 @@
-IN THIS FILE I'LL ADD THE FEATURES I WANT TO ADD TO THE PROJECT:
-
 Features:
     - Add support for different kinds of rules, not just Conway's Game of Life
-    - Add CMD - Commands
+    - Add CMD - Commands for options like size, rule, animation speed
+    - Add file for shapes to be draw easily
+    - Save Images, GIFS from automata
 
 Controller:
 
 Eventmanager:
 
 View:
-    - UI Buttons to start & stop
-    - UI Element to change animation speed
-    - UI Element to input rule-format and specific rule
+    - Add Game Menu
+    - Transition from Menu to Playing State
+    - Add UI Buttons to start & stop
+    - Add UI Element to change animation speed
+    - Add UI Element to input rule-format and specific rule
+    - (Migrate to pyglet?!)
+        - View & Controller contains pygame events
+        - Pygame events have to be changed to pyglet ones
 
 Field, Model:
-    - Should neighborhood be coded into rule or field?
-    - Update through model rather than field
-    - spawn different pattern onto Field through some generalized function
     - Should Model-Updating be an Event for the eventqueue?
+    - Open pattern from file
+    - FIX REGEX TO DETERMINE TYPE OF RULE
 
 QA:
+    - Add guide to install and build golpy
     - Add pydoc comments to everything
+    - consistent error handling for inputs
     - enable error logging
     - add unit tests for each class
     - Closing game without errors/crashing possible?
-
+    - Timing Performance and Optimizing
 

@@ -1,8 +1,8 @@
 # A base Class for the various kinds of 2d-rules used to update the playing field
 
-class BaseRule():
+class BaseRule:
 
-    def __init__(self, rule_str = "", neighborhood = 'M', mode = None, num_states = None):
+    def __init__(self, rule_str="", neighborhood='M', mode=None, num_states=0):
         self.rule_str = rule_str
         self.neighborhood = neighborhood
         self.mode = mode

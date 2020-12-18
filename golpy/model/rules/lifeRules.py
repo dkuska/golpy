@@ -1,4 +1,4 @@
-# Rules for Conway's Game of Life and simular Life-like CA
+# Rules for Conway's Game of Life and similar Life-like CA
 # Supported format is "B/S"
 
 from golpy.model.rules.baserule import BaseRule
@@ -6,19 +6,17 @@ from golpy.model.rules.baserule import BaseRule
 
 class LifeRule(BaseRule):
 
-    def __init__(self, rule_str="", neighborhood='M', mode=None, num_states=None):
+    def __init__(self, rule_str="", neighborhood='M', mode=None, num_states=0):
 
         super().__init__(rule_str, neighborhood, mode, num_states)
 
         self.mode = "Life-like"
         self.num_states = 2
-        self.rule_str = rule_str
 
-        # TODO - Add check for right format in rule_str
-        list = self.rule_str.split("/")
-        if len(list) > 1:
-            self.birth = list[0]
-            self.survive = list[1]
+        rule_list = self.rule_str.split("/")
+        if len(rule_list) > 1:
+            self.birth = rule_list[0].replace('B','')
+            self.survive = rule_list[1].replace('S','')
         else:
             self.birth = ""
             self.survive = ""
