@@ -1,14 +1,16 @@
 Features:
-    - Add support for different kinds of rules, not just Conway's Game of Life
-    - Add CMD - Commands for options like size, rule, animation speed
     - Add file for shapes to be draw easily
     - Save Images, GIFS from automata
+    - Check whether rule and mode are mismatched
+    - Implement different topologies (bounded, sphere, ...)
+    - Add possibility for starting config to be picked through cmd args
 
 Controller:
 
 Eventmanager:
 
 View:
+    - Allow different color schemes
     - Add Game Menu
     - Transition from Menu to Playing State
     - Add UI Buttons to start & stop
@@ -20,7 +22,7 @@ Field, Model:
     - FIX REGEX TO DETERMINE TYPE OF RULE
 
 QA:
-    - Add guide to install and build golpy
+    - Add guide to install and build
     - Add pydoc comments to everything
     - consistent error handling for inputs
     - enable error logging

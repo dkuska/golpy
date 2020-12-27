@@ -11,3 +11,6 @@ fredkin = "B1357/S02468"
 live_free_or_die = "B2/S0"
 life_without_death = "B3/S012345678"
 
+
+highlife = "B36/S230"
+day_and_night = "B3678/S34678"
