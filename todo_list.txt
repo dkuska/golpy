@@ -14,12 +14,8 @@ View:
     - Add UI Buttons to start & stop
     - Add UI Element to change animation speed
     - Add UI Element to input rule-format and specific rule
-    - (Migrate to pyglet?!)
-        - View & Controller contains pygame events
-        - Pygame events have to be changed to pyglet ones
 
 Field, Model:
-    - Should Model-Updating be an Event for the eventqueue?
     - Open pattern from file
     - FIX REGEX TO DETERMINE TYPE OF RULE
 

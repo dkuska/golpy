@@ -46,7 +46,7 @@ class GameModel:
 
     def update_field(self):
         """ Gives notice to field to update itself according to the specified rule"""
-        self.field.update_field(self.rule)
+        self.field.update(self.rule)
 
     ### INTERACTION WITH EVENTMANAGER, MAIN LOOP
     def notify(self, event):

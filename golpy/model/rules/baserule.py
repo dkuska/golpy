@@ -2,9 +2,8 @@
 
 class BaseRule:
 
-    def __init__(self, rule_str="", neighborhood='M', mode=None, num_states=0):
+    def __init__(self, rule_str="",  mode=None, num_states=0):
         self.rule_str = rule_str
-        self.neighborhood = neighborhood
         self.mode = mode
         self.num_states = num_states
 

@@ -6,9 +6,9 @@ from golpy.model.rules.baserule import BaseRule
 
 class LifeRule(BaseRule):
 
-    def __init__(self, rule_str="", neighborhood='M', mode=None, num_states=0):
+    def __init__(self, rule_str="", mode=None, num_states=0):
 
-        super().__init__(rule_str, neighborhood, mode, num_states)
+        super().__init__(rule_str, mode, num_states)
 
         self.mode = "Life-like"
         self.num_states = 2

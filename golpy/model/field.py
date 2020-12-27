@@ -8,8 +8,8 @@ class Field:
         self.height, self.width = size
         if cells is None:
             self.clear_cells()
-            self.spawn_figure(self.height // 2, self.width // 2, creatures.rpentomino)
-            # self.soup_cells()  # TODO - Swap with default init
+            #self.spawn_figure(self.height // 2, self.width // 2, creatures.rpentomino)
+            self.soup_cells()  # TODO - Swap with default init
         else:
             self.cells = cells
             self.size = len(cells[0])
@@ -55,7 +55,7 @@ class Field:
 
         return score
 
-    def update_field(self, rule):
+    def update(self, rule):
         """ Apply the rule to each cell to create the field for the next time step"""
         next_world = self.cells.copy()
         if self.bounded:
@@ -68,14 +68,6 @@ class Field:
         """ Apply rule to a single cell """
         # TODO - Refactor
         return rule.apply(self.cells[x_coord, y_coord], self.neighborhood_count(x_coord, y_coord))
-
-    def print_cells(self):
-        """ DEBUG: Prints the field to console"""
-        for i in range(self.height):
-            print_str = ""
-            for j in range(self.width):
-                print_str += str(self.cells[i, j])
-            print(print_str)
 
     def clear_cells(self):
         """ Resets cells to zeros"""
