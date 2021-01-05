@@ -1,9 +1,10 @@
 Features:
     - Add file for shapes to be draw easily
     - Save Images, GIFS from automata
-    - Check whether rule and mode are mismatched
     - Implement different topologies (bounded, sphere, ...)
-    - Add possibility for starting config to be picked through cmd args
+    - Add option to pick color scheme
+    - Add option to stop the animation with space-bar
+    - Add option to start with different patterns
 
 Controller:
 
@@ -19,7 +20,7 @@ View:
 
 Field, Model:
     - Open pattern from file
-    - FIX REGEX TO DETERMINE TYPE OF RULE
+    - FIX REGEX TO DETERMINE TYPE OF RULE ( currently supported B/S, B/S/C)
 
 QA:
     - Add guide to install and build
@@ -27,6 +28,5 @@ QA:
     - consistent error handling for inputs
     - enable error logging
     - add unit tests for each class
-    - Closing game without errors/crashing possible?
-    - Timing Performance and Optimizing
+    - Timing Performance and Optimizing (Hashlife, QLife)
 
