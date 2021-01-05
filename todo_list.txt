@@ -20,13 +20,10 @@ View:
 
 Field, Model:
     - Open pattern from file
-    - FIX REGEX TO DETERMINE TYPE OF RULE ( currently supported B/S, B/S/C)
 
 QA:
-    - Add guide to install and build
     - Add pydoc comments to everything
-    - consistent error handling for inputs
     - enable error logging
-    - add unit tests for each class
+    - add unit tests
     - Timing Performance and Optimizing (Hashlife, QLife)
 
