@@ -7,9 +7,9 @@ class Field:
         self.size = size
         self.height, self.width = size
         if cells is None:
-            self.clear_cells()
-            #self.spawn_figure(self.height // 2, self.width // 2, creatures.rpentomino)
-            self.soup_cells()  # TODO - Swap with default init
+            self.clear()
+            self.spawn_figure(self.height // 2, self.width // 2, creatures.rpentomino)
+            self.soup()  # TODO - Swap with default init
         else:
             self.cells = cells
             self.size = len(cells[0])
@@ -66,21 +66,20 @@ class Field:
 
     def update_cell(self, x_coord: int, y_coord: int, rule) -> int:
         """ Apply rule to a single cell """
-        # TODO - Refactor
         return rule.apply(self.cells[x_coord, y_coord], self.neighborhood_count(x_coord, y_coord))
 
-    def clear_cells(self):
+    def clear(self):
         """ Resets cells to zeros"""
         self.cells = np.zeros(shape=self.size)
 
-    def soup_cells(self):
+    def soup(self):
         """ Initializes the cells with random soup of 0's and 1's """
         self.cells = np.random.randint(2, size=self.size)
 
     def resize(self, new_width: int, new_height: int):
         """ Resize the field and copy existing cells into upper left corner"""
         old_cells = self.cells.copy()
-        new_cells = np.zeros((new_height, new_width))  # TODO - Does this have to be swapped?
+        new_cells = np.zeros((new_height, new_width))
         i = j = 0
         for row in old_cells:
             for cell in row:

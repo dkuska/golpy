@@ -15,8 +15,8 @@ class LifeRule(BaseRule):
 
         rule_list = self.rule_str.split("/")
         if len(rule_list) > 1:
-            self.birth = rule_list[0].replace('B','')
-            self.survive = rule_list[1].replace('S','')
+            self.birth = rule_list[0].replace('B', '')
+            self.survive = rule_list[1].replace('S', '')
         else:
             self.birth = ""
             self.survive = ""

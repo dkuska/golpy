@@ -1,10 +1,6 @@
 Features:
-    - Add file for shapes to be draw easily
-    - Save Images, GIFS from automata
-    - Implement different topologies (bounded, sphere, ...)
-    - Add option to pick color scheme
-    - Add option to stop the animation with space-bar
     - Add option to start with different patterns
+    - Add support for Larger than Life - Rules
 
 Controller:
 
@@ -12,18 +8,14 @@ Eventmanager:
 
 View:
     - Allow different color schemes
-    - Add Game Menu
-    - Transition from Menu to Playing State
-    - Add UI Buttons to start & stop
-    - Add UI Element to change animation speed
-    - Add UI Element to input rule-format and specific rule
+    - Keybinds for starting, stoping, souping, clearing, spawning-creatures
 
 Field, Model:
     - Open pattern from file
+    - Implement different topologies (bounded, sphere, ...)
 
 QA:
     - Add pydoc comments to everything
     - enable error logging
     - add unit tests
     - Timing Performance and Optimizing (Hashlife, QLife)
-

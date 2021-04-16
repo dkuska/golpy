@@ -22,7 +22,12 @@ def pass_args():
     parser.add_argument("-speed", "-sp", type=int, default=config.default_speed,
                         help="Integer describing the maximum FPS possible for the animation")
     parser.add_argument("-windowsize", "-w", type=int, default=config.default_window_size,
-                         help="Integer describing the window size in pixels")
+                        help="Integer describing the window size in pixels")
+    parser.add_argument("-save", "-sa", type=int, default=config.default_save,
+                        help="Integer describing if images should be saved to the img folder. 0 - don't save, 1 - save")
+    parser.add_argument("-start", "-st", type=str, default=config.default_starting_config,
+                        help="String specifying the starting configuration of the universe. Currently supported: soup, glider. Default: soup")
+
 
     return parser.parse_args()
 

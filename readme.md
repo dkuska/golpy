@@ -10,15 +10,22 @@ Inspired by golly (https://sourceforge.net/projects/golly/)
 created and maintained by dkuska
 
 **USAGE:**
-Go into the golpy directory and run main.py with your python interpreter.
+1. Download or clone the repository.
+
+2. Install dependencies with:
+   
+        pip install PIL numpy pygame
+
+3. Go into the golpy directory and run main.py with your python interpreter
+and the command line arguments you'd like to pass.
 For example:
 
-        python main.py -rule 3/23 -size 150 
+        python main.py -rule 3/23 -size 150
 
 **CMD Arguments:**
 
 **-rule, -r:** The rulestring specifying the CA. 
-            Supported formats are B0..8/S0..8 and B0..8/S0..8/C
+            Supported formats are B0..8/S0..8 and B0..8/S0..8/C (Life-like and Generations)
 
 **-mode, -m :** Specifyes the way the rulestring is to be interpreted.
             Currently not used.
@@ -34,3 +41,6 @@ For example:
 
 **-windowsize, -w:** Integer specifying the dimensions of the window in pixels. 
             Currently only square windows are permitted.
+
+**-start, -st:** String specifing the starting configuration. 
+            Currently supported: soup, glider   
