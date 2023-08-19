@@ -11,7 +11,7 @@ Bbmin..bmax specifies the count limits for a dead cell to become a birth.
 Nn specifies the extended neighborhood type (n is M for Moore or N for von Neumann. Golly and LifeViewer also support C for Circular neighborhood. LifeViewer additionally supports 2 for L2, + for Cross, X for Saltire and * for Star neighborhoods and many more).
 """
 
-from golpy.model.rules.baserule import BaseRule
+from model.rules.baserule import BaseRule
 
 class LtlRule(BaseRule):
 

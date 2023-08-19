@@ -1,9 +1,9 @@
-from golpy.model.field import Field
-from golpy.model.rules.baserule import BaseRule
-from golpy.model.rules.lifeRules import LifeRule
-from golpy.model.rules.generationsRule import GenerationsRule
-from golpy.model.statemachine import *
-from golpy.eventmanager.eventmanager import *
+from model.field import Field
+from model.rules.baserule import BaseRule
+from model.rules.lifeRules import LifeRule
+from model.rules.generationsRule import GenerationsRule
+from model.statemachine import *
+from eventmanager.eventmanager import *
 
 import re  # Used to determine type of rule
 

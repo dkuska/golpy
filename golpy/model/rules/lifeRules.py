@@ -1,7 +1,7 @@
 # Rules for Conway's Game of Life and similar Life-like CA
 # Supported format is "B/S"
 
-from golpy.model.rules.baserule import BaseRule
+from model.rules.baserule import BaseRule
 
 
 class LifeRule(BaseRule):

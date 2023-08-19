@@ -2,10 +2,10 @@ import pygame
 import numpy as np
 from PIL import Image
 
-from golpy.eventmanager.eventmanager import *
-import golpy.model.statemachine as statemachine
+from eventmanager.eventmanager import *
+import model.statemachine as statemachine
 
-from golpy.config import *
+from config import *
 
 
 class View:

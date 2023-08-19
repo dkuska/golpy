@@ -1,6 +1,6 @@
-import golpy.model.gamemodel as model
-from golpy.eventmanager.eventmanager import *
-from golpy.model.statemachine import *
+import model.gamemodel as model
+from eventmanager.eventmanager import *
+from model.statemachine import *
 
 import pygame
 

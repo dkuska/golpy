@@ -1,1 +1,1 @@
-from golpy.model.rules import *
+from model.rules import *

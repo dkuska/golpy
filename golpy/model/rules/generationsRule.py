@@ -1,6 +1,6 @@
 # Another type of rule
 
-from golpy.model.rules.baserule import BaseRule
+from model.rules.baserule import BaseRule
 
 
 class GenerationsRule(BaseRule):

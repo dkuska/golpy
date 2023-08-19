@@ -1,10 +1,8 @@
-import golpy.controller.controller as controller
-import golpy.view.view as view
-import golpy.model.gamemodel as model
-import golpy.eventmanager.eventmanager as eventm
-import golpy.config as config
-import log.log as log
-
+import controller.controller as controller
+import view.view as view
+import model.gamemodel as model
+import eventmanager.eventmanager as eventm
+import config
 import argparse
 
 
@@ -34,7 +32,6 @@ def pass_args():
 
 def run():
     args = pass_args()
-    logger = log.Logger()
     event_manager = eventm.EventManager()
     game_model = model.GameModel(event_manager, rule_str=args.rule, field_size=(args.size, args.size))
     game_view = view.View(event_manager, game_model, size=args.windowsize, tick_rate=args.speed)

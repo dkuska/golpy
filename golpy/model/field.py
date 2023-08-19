@@ -1,6 +1,5 @@
 import numpy as np
-import golpy.model.example_creatures as creatures
-
+import model.example_creatures as creatures
 
 class Field:
     def __init__(self, cells=None, size=(0, 0), mode='default', neighborhood='M', bounded=True):
@@ -8,7 +7,7 @@ class Field:
         self.height, self.width = size
         if cells is None:
             self.clear()
-            self.spawn_figure(self.height // 2, self.width // 2, creatures.rpentomino)
+            # self.spawn_figure(self.height // 2, self.width // 2, creatures.rpentomino)
             self.soup()  # TODO - Swap with default init
         else:
             self.cells = cells
