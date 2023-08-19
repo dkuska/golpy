@@ -1,3 +1,4 @@
-Pillow
+loguru
 numpy
+Pillow
 pygame
