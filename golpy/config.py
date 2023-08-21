@@ -8,6 +8,6 @@ default_topology = "torus"
 default_speed = 30
 default_window_size = 600
 default_save = 0
-default_save_path = "C:\\Users\\NanoX\\PycharmProjects\\golpy\\img\\"
+default_save_path = "./img/"
 
 default_starting_config = "soup"

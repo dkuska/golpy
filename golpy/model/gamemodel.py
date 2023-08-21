@@ -2,26 +2,16 @@ from model.field import Field
 from model.rules.baserule import BaseRule
 from model.rules.lifeRules import LifeRule
 from model.rules.generationsRule import GenerationsRule
-from model.statemachine import *
-from eventmanager.eventmanager import *
 
 import re  # Used to determine type of rule
 
 
 class GameModel:
-    def __init__(self, event_manager, rule_str="3/23", field_size=(100, 100)):
-        # MVC Logic
-        self.event_manager = event_manager
-        event_manager.register_listener(self)
-        self.running = False
-        self.state = StateMachine()
-
-        # Cellular Automata Logic
-        # Playing Field
+    def __init__(self, rule: str="3/23", field_size=(100, 100), num_generations: int = 1000):
         self.field = Field(size=field_size)
-        # Rule
         self.rule = BaseRule()
-        self.update_rule(rule_str)
+        self.num_generations = num_generations
+        self.update_rule(rule)
 
     def reset_rule(self):
         """ Reset rule to be a blank baserule"""
@@ -49,30 +39,7 @@ class GameModel:
     def update_field(self):
         """ Gives notice to field to update itself according to the current rule"""
         self.field.update(self.rule)
-
-    ### INTERACTION WITH EVENTMANAGER, MAIN LOOP
-    def notify(self, event):
-        """ Called by an event in the message queue """
-        if isinstance(event, QuitEvent):
-            # Clean up data
-            self.running = False
-        if isinstance(event, StateChangeEvent):  # TODO - Check whatever this is useful for....
-            # pop request
-            if not event.state:
-                # false if no more states are left
-                if not self.state.pop():
-                    self.event_manager.Post(QuitEvent())
-            else:
-                # push a new state on the stack
-                self.state.push(event.state)
-
+        
     def run(self):
-        """ Starts the game engine loop.
-        This pumps a Tick event into the message queue for each loop.
-        The loop ends when this object hears a QuitEvent in notify() """
-        self.running = True
-        self.event_manager.Post(InitializeEvent())
-        self.state.push(STATE_PLAY)
-        while self.running:
-            new_tick = TickEvent()
-            self.event_manager.Post(new_tick)
+        for _ in range(self.num_generations):
+            self.update_field()
