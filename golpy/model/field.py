@@ -44,9 +44,9 @@ class Field:
         padded_universe = np.pad(self.cells, 1, mode="wrap")
     
         return F.conv2d(input=torch.tensor(padded_universe).unsqueeze(0).unsqueeze(0), 
-                        weight=torch.tensor(self.neighborhood_kernel).unsqueeze(0).unsqueeze(0)).squeeze().numpy()
+                        weight=torch.tensor(self.neighborhood_kernel()).unsqueeze(0).unsqueeze(0)).squeeze().numpy()
 
-    def update(self, rule):
+    def update(self):
         """ Apply the rule to each cell to create the field for the next time step"""
         next_generation = self.cells.copy()
         neighborhood_counts = self.get_neighborhood_counts()

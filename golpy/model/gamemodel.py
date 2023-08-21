@@ -37,8 +37,7 @@ class GameModel:
                 self.rule = BaseRule(rule_str)
 
     def update_field(self):
-        """ Gives notice to field to update itself according to the current rule"""
-        self.field.update(self.rule)
+        self.field.update()
         
     def run(self):
         for _ in range(self.num_generations):
