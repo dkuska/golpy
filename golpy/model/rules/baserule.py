@@ -7,5 +7,5 @@ class BaseRule:
         self.mode = mode
         self.num_states = num_states
 
-    def apply(self, curr_state: int, num_neighbors: int) -> int:
-        pass
+        self.birth = []
+        self.survive = []

@@ -24,10 +24,6 @@ class GameModel:
         generations_regex = re.match("[0-9]*/[0-9]*/[0-9]*", rule_str)
         generations_alt_regex = re.match("B[0-9]*/S[0-9]*/[0-9]+", rule_str)
 
-        # USEFUL IN THE FUTURE WHEN LTL-RULES ARE ALLOWED
-        #ltl_regex = re.match("",rule_str)
-        #ltl_alt_regex = re.match("", rule_str)
-
         if generations_regex or generations_alt_regex:
             self.rule = GenerationsRule(rule_str)
         else:
@@ -36,9 +32,6 @@ class GameModel:
             else:
                 self.rule = BaseRule(rule_str)
 
-    def update_field(self):
-        self.field.update()
-        
     def run(self):
         for _ in range(self.num_generations):
-            self.update_field()
+            self.field.update(self.rule)

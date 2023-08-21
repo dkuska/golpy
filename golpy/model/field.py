@@ -3,6 +3,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
+import model.rules as rules
+
 class Field:
     def __init__(self, cells=None, size=(0, 0), mode='default', neighborhood='M', bounded=True):
         self.size = size
@@ -46,7 +48,7 @@ class Field:
         return F.conv2d(input=torch.tensor(padded_universe).unsqueeze(0).unsqueeze(0), 
                         weight=torch.tensor(self.neighborhood_kernel()).unsqueeze(0).unsqueeze(0)).squeeze().numpy()
 
-    def update(self):
+    def update(self, rule: rules.BaseRule):
         """ Apply the rule to each cell to create the field for the next time step"""
         next_generation = self.cells.copy()
         neighborhood_counts = self.get_neighborhood_counts()
@@ -54,9 +56,10 @@ class Field:
         alive = np.where(self.cells == 1)
         dead = np.where(self.cells < 1)
 
-        # Apply Rule        
-        next_generation[alive] = np.where((neighborhood_counts[alive] == 2) | (neighborhood_counts[alive] == 3), 1.0, 0)
-        next_generation[dead] = np.where(neighborhood_counts[dead] == 3, 1.0, 0)
+        # Apply Rule       
+        # TODO Generation Rules 
+        next_generation[alive] = np.where(neighborhood_counts[alive] in rule.survive, 1.0, 0)
+        next_generation[dead] = np.where(neighborhood_counts[dead] in rule.birth, 1.0, 0)
         
         self.cells = next_generation
 
