@@ -35,3 +35,4 @@ class GameModel:
     def run(self):
         for _ in range(self.num_generations):
             self.field.update(self.rule)
+            print(self.field.cells)

@@ -22,20 +22,14 @@ class Field:
         self.bounded = bounded
 
     def get_neighborhood(self):
-        """ Return list of coordinate pairs which describe the neighbors of a cell with the position x_coord, y_coord"""
-        # TODO - Support other topologies than torus-shaped
         if self.neighborhood == 'N':  # VonNeumann-Neighborhood
-            neighborhood = np.array(
-                [[0, 1, 0],
-                [1, 0, 1],
-                [0, 1, 0]]
-            )
+            neighborhood = np.array([[0, 1, 0],
+                                     [1, 0, 1],
+                                     [0, 1, 0]])
         elif self.neighborhood == 'M':  # Moore-Neighborhood
-            neighborhood = np.array(
-                [[1, 1, 1],
-                [1, 0, 1],
-                [1, 1, 1]]
-            )
+            neighborhood = np.array([[1, 1, 1],
+                                     [1, 0, 1],
+                                     [1, 1, 1]])
         else:
             logger.error("Log Error, neighborhood-status undefined")
 
@@ -57,9 +51,9 @@ class Field:
         dead = np.where(self.cells < 1)
 
         # Apply Rule       
-        # TODO Generation Rules 
-        next_generation[alive] = np.where(neighborhood_counts[alive] in rule.survive, 1.0, 0)
-        next_generation[dead] = np.where(neighborhood_counts[dead] in rule.birth, 1.0, 0)
+        # TODO Generation Rules        
+        next_generation[alive] = np.where(np.isin(neighborhood_counts[alive], rule.survive), 1.0, 0)
+        next_generation[dead] = np.where(np.isin(neighborhood_counts[dead], rule.birth), 1.0, 0)
         
         self.cells = next_generation
 

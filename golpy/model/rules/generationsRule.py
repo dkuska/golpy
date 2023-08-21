@@ -1,5 +1,6 @@
 # Another type of rule
 
+import numpy as np
 from model.rules.baserule import BaseRule
 
 
@@ -13,12 +14,9 @@ class GenerationsRule(BaseRule):
 
         rule_list = self.rule_str.split("/")
         if len(rule_list) == 3:
-            self.birth = [int(x) for x in rule_list[0].replace('B', '')]
-            self.survive = [int(x) for x in rule_list[1].replace('S', '')]
+            self.birth = np.array([int(x) for x in rule_list[0].replace('B', '')])
+            self.survive = np.array([int(x) for x in rule_list[1].replace('S', '')])
             self.num_states = int(rule_list[2].replace('C', ''))
         elif len(rule_list) == 2:
-            self.birth = [int(x) for x in rule_list[0].replace('B', '')]
-            self.survive = [int(x) for x in rule_list[1].replace('S', '')]
-        else:
-            self.birth = []
-            self.survive = []
+            self.birth = np.array([int(x) for x in rule_list[0].replace('B', '')])
+            self.survive = np.array([int(x) for x in rule_list[1].replace('S', '')])

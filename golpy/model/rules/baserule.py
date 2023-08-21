@@ -1,5 +1,7 @@
 # A base Class for the various kinds of 2d-rules used to update the playing field
 
+import numpy as np
+
 class BaseRule:
 
     def __init__(self, rule_str="",  mode=None, num_states=0):
@@ -7,5 +9,5 @@ class BaseRule:
         self.mode = mode
         self.num_states = num_states
 
-        self.birth = []
-        self.survive = []
+        self.birth = np.array([])
+        self.survive = np.array([])
