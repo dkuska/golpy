@@ -2,7 +2,7 @@ from model.field import Field
 from model.rules.baserule import BaseRule
 from model.rules.lifeRules import LifeRule
 from model.rules.generationsRule import GenerationsRule
-from model.stats import Statistics
+from stats import Statistics
 
 
 import re  # Used to determine type of rule
