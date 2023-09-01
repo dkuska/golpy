@@ -6,20 +6,13 @@ import torch.nn.functional as F
 import model.rules as rules
 
 class Field:
-    def __init__(self, cells=None, size=(0, 0), mode='default', neighborhood='M', bounded=True):
+    def __init__(self, size=(0, 0), neighborhood='M'):
         self.size = size
         self.height, self.width = size
-        if cells is None:
-            self.clear()
-            self.soup()  # TODO - Swap with default init
-        else:
-            self.cells = cells
-            self.size = len(cells[0])
+        self.cells =  self.soup()
 
-        self.mode = mode
         self.neighborhood = neighborhood
-        self.neighborhood_kernel = self.get_neighborhood
-        self.bounded = bounded
+        self.neighborhood_kernel = self.get_neighborhood()
 
     def get_neighborhood(self):
         if self.neighborhood == 'N':  # VonNeumann-Neighborhood
@@ -36,11 +29,11 @@ class Field:
         return neighborhood
 
     def get_neighborhood_counts(self) -> int:
-        
         padded_universe = np.pad(self.cells, 1, mode="wrap")
-    
-        return F.conv2d(input=torch.tensor(padded_universe).unsqueeze(0).unsqueeze(0), 
-                        weight=torch.tensor(self.neighborhood_kernel()).unsqueeze(0).unsqueeze(0)).squeeze().numpy()
+        tensor_universe = torch.tensor(padded_universe).unsqueeze(0).unsqueeze(0)
+        tensor_neighborhood_kernel = torch.tensor(self.neighborhood_kernel).unsqueeze(0).unsqueeze(0)
+
+        return F.conv2d(input=tensor_universe, weight=tensor_neighborhood_kernel).squeeze().numpy()
 
     def update(self, rule: rules.BaseRule):
         """ Apply the rule to each cell to create the field for the next time step"""
@@ -64,28 +57,4 @@ class Field:
 
     def soup(self):
         """ Initializes the cells with random soup of 0's and 1's """
-        self.cells = np.random.randint(2, size=self.size)
-
-    def resize(self, new_width: int, new_height: int):
-        """ Resize the field and copy existing cells into upper left corner"""
-        old_cells = self.cells.copy()
-        new_cells = np.zeros((new_height, new_width))
-        i = j = 0
-        for row in old_cells:
-            for cell in row:
-                new_cells[i, j] = cell
-                j += 1
-            i += 1
-            j = 0
-        self.cells = new_cells.copy()
-
-    def spawn_figure(self, x_coord, y_coord, fig_data):
-        """ Spawns a figure specified through an array starting at the pos specified by the coordinates"""
-        # TODO - Error Handling & edge wrapping
-        x_pos, y_pos = x_coord, y_coord
-        for row in fig_data:
-            for new_value in row:
-                self.cells[x_pos, y_pos] = new_value
-                x_pos += 1
-            x_pos = x_coord  # Reset x_coord for next row
-            y_pos += 1  # Increment
+        return np.random.randint(2, size=self.size)
