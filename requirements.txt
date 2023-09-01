@@ -1,3 +1,5 @@
-Pillow
+loguru
 numpy
-pygame
+pandas
+Pillow
+torch
