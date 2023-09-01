@@ -12,6 +12,9 @@ def pass_args():
                         help="Integer describing size of the universe. I.e. -size 200 will correspond to a (200 x 200) cell universe")
     parser.add_argument("-generations", "-g", type=int, default=config.default_generations,
                         help="Integer describing number of generations to run")
+    parser.add_argument("-savefolder", "-sp", type=str, default=config.default_statistics_folder,
+                        help="Folder where statistics of the run should be saved")
+    
     return parser.parse_args()
 
 
@@ -19,7 +22,8 @@ def run():
     args = pass_args()
     game_model = model.GameModel(rule=args.rule, 
                                  field_size=(args.size, args.size),
-                                 num_generations=args.generations)
+                                 num_generations=args.generations,
+                                 stats_folder=args.savefolder)
     game_model.run()
 
 

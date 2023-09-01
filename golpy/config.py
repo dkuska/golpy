@@ -4,3 +4,4 @@ import model.rules.example_rules as examples
 default_rule = examples.gol
 default_size = 10
 default_generations = 10
+default_statistics_folder = "./stats/"

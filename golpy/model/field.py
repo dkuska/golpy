@@ -50,7 +50,6 @@ class Field:
         
         self.cells = next_generation
 
-
     def clear(self):
         """ Resets cells to zeros"""
         self.cells = np.zeros(shape=self.size)
