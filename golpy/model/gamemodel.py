@@ -38,6 +38,7 @@ class GameModel:
                 self.rule = BaseRule(rule_str)
 
     def run(self):
+        print(self.field.cells)  # DEBUG
         for i in range(self.num_generations):
             old_field = self.field.cells.copy() # Create copy of old field for statistics
             self.field.update(self.rule)

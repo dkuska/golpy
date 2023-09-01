@@ -37,16 +37,34 @@ class Field:
 
     def update(self, rule: rules.BaseRule):
         """ Apply the rule to each cell to create the field for the next time step"""
+        # Create copy of cells 
         next_generation = self.cells.copy()
+        # Get neighborhood counts for all cells
         neighborhood_counts = self.get_neighborhood_counts()
-        
+        # Get living and dead cells
         alive = np.where(self.cells == 1)
         dead = np.where(self.cells < 1)
-
-        # Apply Rule       
-        # TODO Generation Rules        
-        next_generation[alive] = np.where(np.isin(neighborhood_counts[alive], rule.survive), 1.0, 0)
-        next_generation[dead] = np.where(np.isin(neighborhood_counts[dead], rule.birth), 1.0, 0)
+        
+        # TODO: Make this more efficient
+        # Decide which logic to apply to update the fields
+        if isinstance(rule, rules.LifeRule):
+            next_generation[alive] = np.where(np.isin(neighborhood_counts[alive], rule.survive), 
+                                              1, 0)
+            next_generation[dead] = np.where(np.isin(neighborhood_counts[dead], rule.birth), 
+                                             1, 0)
+        elif isinstance(rule, rules.GenerationsRule):
+            # Update alive cells to either stay alive or start aging
+            next_generation[alive] = np.where(np.isin(neighborhood_counts[alive], rule.survive), 
+                                              1, (next_generation[alive] + 1) % rule.num_states)
+            # Update dead cells to either stay dead or become alive
+            next_generation[dead] = np.where(np.isin(neighborhood_counts[dead], rule.birth), 
+                                             1, 0)
+            # Already aging cells age even more
+            already_aging = np.where(self.cells > 1)
+            next_generation[already_aging] += 1
+            next_generation[already_aging] = next_generation[already_aging] % rule.num_states
+        else:
+            logger.error("Invalid rule")
         
         self.cells = next_generation
 

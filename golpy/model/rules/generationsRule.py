@@ -6,7 +6,6 @@ from model.rules.baserule import BaseRule
 
 class GenerationsRule(BaseRule):
     def __init__(self, rule_str="", mode=None, num_states=0):
-
         super().__init__(rule_str, mode, num_states)
 
         self.mode = "Generations"
